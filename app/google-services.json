@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "362469656911",
+    "project_id": "atfood-1e4c7",
+    "storage_bucket": "atfood-1e4c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362469656911:android:d6f194e9b765f9d83add3a",
+        "android_client_info": {
+          "package_name": "com.example.atfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362469656911-suingovpqgeejnafn12nojt5v9ogld5h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.atfood",
+            "certificate_hash": "ca01da091331a2e17974aaac2855ffd1ac964d1e"
+          }
+        },
+        {
+          "client_id": "362469656911-cd66okfjk2fa6hj52hftqf80p2db2ni6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfVttZRgQlTI6dqecc7gGjdkJc61sC4Hs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362469656911-cd66okfjk2fa6hj52hftqf80p2db2ni6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
