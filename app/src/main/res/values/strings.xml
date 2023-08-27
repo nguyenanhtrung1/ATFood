@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ATFood</string>
+    <string name="txtDangNhap">Đăng nhập</string>
+    <string name="txtDangki">Đăng kí\n</string>
 </resources>
