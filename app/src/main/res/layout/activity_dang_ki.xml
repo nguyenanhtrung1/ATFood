@@ -5,46 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DangKiActivity">
+    android:background="@drawable/bg"
+    tools:context=".Activity.DangKiActivity">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/maincolor"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:padding="5dp"
         android:text="@string/txtDangki"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="33sp"
         android:textStyle="bold">
 
     </TextView>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="5dp"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:id="@+id/line1"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
             android:id="@+id/edtTaiKhoan"
-            android:hint="Nhập Tài Khoản"
-            android:drawablePadding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:background="@drawable/input_bg"
+            android:drawableLeft="@drawable/baseline_account_login"
+            android:drawablePadding="5dp"
+            android:hint="Nhập Tài Khoản"
+           >
 
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:layout_marginTop="5dp"
         android:id="@+id/line5"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
+            android:background="@drawable/input_bg"
+            android:drawableLeft="@drawable/baseline_people_dangki"
             android:id="@+id/edtTenNguoiDung"
             android:hint="Nhập Tên Người Dùng"
             android:drawablePadding="5dp"
@@ -57,6 +69,8 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:layout_marginTop="5dp"
         android:id="@+id/line2"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -64,6 +78,8 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
+            android:background="@drawable/input_bg"
             android:inputType="textPassword"
             android:id="@+id/edtMatKhau"
             android:layout_width="match_parent"
@@ -71,17 +87,23 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:drawablePadding="5dp"
+            android:drawableLeft="@drawable/baseline_security_dangki"
             android:hint="Nhập Mật Khẩu">
 
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:layout_marginTop="5dp"
         android:id="@+id/line3"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
+            android:drawableLeft="@drawable/baseline_security_dangki"
+            android:background="@drawable/input_bg"
             android:inputType="textPassword"
             android:id="@+id/edtReMatKhau"
             android:hint="Nhập Lại Mật Khẩu"
@@ -93,33 +115,41 @@
 
         </com.google.android.material.textfield.TextInputEditText>
         <com.google.android.material.textfield.TextInputLayout
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:layout_marginTop="5dp"
+            app:prefixText="+84"
+            app:prefixTextColor="@color/white"
             android:id="@+id/line4"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtSoDienThoai"
-                android:hint="Nhập Số Điện Thoại"
-                android:drawablePadding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:background="@drawable/input_bg"
+                android:drawableLeft="@drawable/baseline_phone_dangki"
+                android:drawablePadding="5dp"
+                android:hint="Nhập Số Điện Thoại"
+                android:textColor="@color/white">
 
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
     </com.google.android.material.textfield.TextInputLayout>
-    <androidx.appcompat.widget.AppCompatButton
 
-        android:layout_margin="10dp"
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_margin="20dp"
         android:text="Đăng Kí"
         android:textSize="20sp"
         android:textColor="@color/white"
         android:id="@+id/btnDangKi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/maincolor">
+        android:background="#03A9F4">
     </androidx.appcompat.widget.AppCompatButton>
 
 </LinearLayout>

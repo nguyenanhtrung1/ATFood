@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_margin="5dp"
+    android:elevation="8dp"
+    app:cardCornerRadius="4dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="10">
+
+        <ImageView
+            android:padding="4dp"
+            android:background="@drawable/bg_loaisp"
+            android:id="@+id/img_itemCuaHang"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:src="@drawable/icon_otp">
+
+        </ImageView>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7">
+            <TextView
+                android:gravity="center"
+                android:id="@+id/txt_itemTenCH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên cửa hàng"
+                android:textColor="@color/black"
+                android:textSize="17sp">
+            </TextView>
+            <LinearLayout
+                android:layout_margin="3dp"
+                android:background="#BDBBBB"
+                android:layout_width="match_parent"
+                android:layout_height="1dp">
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/txt_itemDiaChiCH"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Địa Chỉ : 194 Nguyễn Lương Bằng"
+                android:textColor="@color/grey_custom"
+                android:textSize="13sp">
+
+            </TextView>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -5,58 +5,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DangNhapActivity"
+    tools:context=".Activity.DangNhapActivity"
+    android:background="@drawable/bg"
     >
     <TextView
-        android:text="@string/txtDangNhap"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:padding="5dp"
-        android:textStyle="bold"
-        android:layout_marginTop="10dp"
-        android:background="#03A9F4"
-        android:textColor="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/txtDangNhap"
+        android:textColor="@color/white"
+        android:textSize="33sp"
+        android:textStyle="bold">
 
     </TextView>
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:id="@+id/line1"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
             android:id="@+id/edtTaiKhoanDN"
-            android:hint="Nhập Tài Khoản"
-            android:drawablePadding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:background="@drawable/input_bg"
+            android:drawableLeft="@drawable/baseline_account_login"
+            android:drawablePadding="5dp"
+            android:hint="Nhập Tài Khoản">
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginTop="5dp"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="20dp"
         android:id="@+id/line2"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:endIconMode="password_toggle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtMatKhauDN"
-            android:hint="Nhập Mật Khẩu"
-            android:inputType="textPassword"
-            android:drawablePadding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:background="@drawable/input_bg"
+            android:drawableLeft="@drawable/baseline_security_dangki"
+            android:drawablePadding="5dp"
+            android:hint="Nhập Mật Khẩu"
+            android:inputType="textPassword"
+            android:textColor="@color/white">
 
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
+
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:text="Đăng nhập"
         android:textSize="20sp"
         android:textColor="@color/white"
@@ -82,7 +94,7 @@
             android:paddingLeft="5dp"
             android:text="Quên Mật Khẩu?"
             android:textSize="17sp"
-            android:textColor="#03A9F4"
+            android:textColor="@color/white"
             android:textStyle="bold">
 
         </TextView>
@@ -94,6 +106,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp">
         <TextView
+            android:textColor="#FF003C"
             android:text="Chưa Có Tài Khoản?"
             android:textSize="15sp"
             android:layout_weight="2"
@@ -110,7 +123,7 @@
             android:gravity="left"
             android:paddingLeft="5dp"
             android:text="Đăng Ký Ngay"
-            android:textColor="#F83B2D"
+            android:textColor="@color/white"
             android:textSize="19sp"
             android:textStyle="bold">
         </TextView>

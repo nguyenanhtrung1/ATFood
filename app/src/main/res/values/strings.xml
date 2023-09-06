@@ -2,4 +2,6 @@
     <string name="app_name">ATFood</string>
     <string name="txtDangNhap">Đăng nhập</string>
     <string name="txtDangki">Đăng kí\n</string>
+    <string name="toolbar_TrangChu">Trang Chủ</string>
+    <string name="title_activity_map">MapActivity</string>
 </resources>

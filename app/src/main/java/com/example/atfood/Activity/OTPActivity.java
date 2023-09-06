@@ -1,8 +1,4 @@
-package com.example.atfood;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
+package com.example.atfood.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +7,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+
+import com.example.atfood.R;
+import com.example.atfood.Retrofit.ATFoodAPI;
+import com.example.atfood.Retrofit.RetrofitClient;
+import com.example.atfood.Utils.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -24,6 +28,10 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class OTPActivity extends AppCompatActivity {
     EditText edtOTPSoDienThoai;
     AppCompatButton btnOTPDangKi;
@@ -31,13 +39,16 @@ public class OTPActivity extends AppCompatActivity {
     String mPhoneNumber, mVetificationOTP;
     FirebaseAuth mAuth;
     PhoneAuthProvider.ForceResendingToken mForceResendingToken;
+    ATFoodAPI atFoodAPI;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otpactivity);
+        getDataIntent();
         initView();
         initControl();
-        getDataIntent();
+
     }
 
     private void getDataIntent() {
@@ -102,9 +113,30 @@ public class OTPActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            String taiKhoan = getIntent().getStringExtra("taiKhoan");
+                            String matKhau = getIntent().getStringExtra("matKhau");
+                            String tenNguoiDung = getIntent().getStringExtra("tenNguoiDung");
+                            compositeDisposable.add(atFoodAPI.dangKi(taiKhoan, matKhau, tenNguoiDung, mPhoneNumber)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(
+                                            userModel -> {
+                                                if(userModel.isSuccess()){
+                                                    Utils.user_current.setTaikhoan(taiKhoan);
+                                                    Utils.user_current.setMatkhau(matKhau);
 
-                            FirebaseUser user = task.getResult().getUser();
-                            goToMainActivity(user.getPhoneNumber());
+                                                    finish();
+                                                }else{
+                                                    Toast.makeText(getApplicationContext(), "Success!!", Toast.LENGTH_SHORT).show();
+                                                }
+                                            },
+                                            throwable -> {
+                                                Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                    )
+                            );
+                            goToMainActivity();
+
                         } else {
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 Toast.makeText(OTPActivity.this, "The verification code entered was invalid", Toast.LENGTH_SHORT).show();
@@ -114,9 +146,9 @@ public class OTPActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void goToMainActivity(String phoneNumber) {
+    private void goToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("phone_number",phoneNumber);
+        //intent.putExtra("phone_number",phoneNumber);
         startActivity(intent);
     }
     private void initView() {
@@ -124,5 +156,11 @@ public class OTPActivity extends AppCompatActivity {
         btnOTPDangKi = findViewById(R.id.btnOTPDangKi);
         txtSendOTP = findViewById(R.id.txtClick_SendOTP);
         mAuth = FirebaseAuth.getInstance();
+        atFoodAPI = RetrofitClient.getInstance(Utils.BASE_URL).create(ATFoodAPI.class);
+    }
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
     }
 }

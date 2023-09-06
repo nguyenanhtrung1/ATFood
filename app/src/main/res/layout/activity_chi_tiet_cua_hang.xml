@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ChiTietCuaHang">
+
+    <LinearLayout
+        android:scrollbars="vertical"
+        android:id="@+id/linearChiTietCH"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarChiTietCH"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentTop="true"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="right"
+                android:layout_marginRight="15dp">
+
+                <ImageView
+                    android:id="@+id/img_searchSpTrongCH"
+                    android:layout_width="40dp"
+                    android:layout_height="41dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/baseline_search">
+
+                </ImageView>
+                <FrameLayout
+                    android:layout_gravity="right"
+                    android:id="@+id/frame_GioHang"
+                    android:layout_width="60dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginRight="15dp">
+
+                    <com.nex3z.notificationbadge.NotificationBadge
+                        android:id="@+id/badge_SoLuongSP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|right">
+
+                    </com.nex3z.notificationbadge.NotificationBadge>
+
+                    <ImageView
+                        android:id="@+id/cart"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/cart">
+
+                    </ImageView>
+                </FrameLayout>
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_loaisp"
+            android:layout_height="100dp"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6.5">
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/txt_TenCH"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tên cửa hàng"
+                    android:textColor="@color/black"
+                    android:textSize="19sp">
+                </TextView>
+                <LinearLayout
+                    android:layout_margin="3dp"
+                    android:background="#BDBBBB"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp">
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/txt_DiaChiCH"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Địa Chỉ : 194 Nguyễn Lương Bằng"
+                    android:textColor="@color/grey_custom"
+                    android:textSize="14sp">
+
+                </TextView>
+
+
+            </LinearLayout>
+            <ImageView
+                android:padding="4dp"
+                android:id="@+id/img_CuaHang"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.5"
+                android:src="@drawable/icon_otp">
+
+            </ImageView>
+        </LinearLayout>
+        <HorizontalScrollView
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#E8DFDF"
+                android:orientation="horizontal"
+                android:weightSum="6">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:drawableLeft="@drawable/baseline_lovesp_ch"
+                        android:gravity="center"
+                        android:text=".........."
+                        android:textColor="@color/black"
+                        android:textSize="15sp">
+
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_margin="5dp"
+                        android:background="@color/grey_custom"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/baseline_lovesp_ch"
+                        android:text=".........."
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="15sp">
+
+                    </TextView>
+                    <LinearLayout
+                        android:layout_margin="5dp"
+                        android:background="@color/grey_custom"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent">
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/baseline_lovesp_ch"
+                        android:text=".........."
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="15sp">
+
+                    </TextView>
+                    <LinearLayout
+                        android:layout_margin="5dp"
+                        android:background="@color/grey_custom"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/baseline_lovesp_ch"
+                        android:text=".........."
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="15sp">
+
+                    </TextView>
+                    <LinearLayout
+                        android:layout_margin="5dp"
+                        android:background="@color/grey_custom"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/baseline_lovesp_ch"
+                        android:text=".........."
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="15sp">
+
+                    </TextView>
+                    <LinearLayout
+                        android:layout_margin="5dp"
+                        android:background="@color/grey_custom"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/baseline_lovesp_ch"
+                        android:text=".........."
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="15sp">
+
+                    </TextView>
+                    <LinearLayout
+                        android:layout_margin="5dp"
+                        android:background="@color/grey_custom"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </HorizontalScrollView>
+        <LinearLayout
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:padding="6dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Cửa hàng này sẽ giao tới bạn trong : "
+                android:textColor="@color/black"
+                android:textSize="16sp">
+
+            </TextView>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:weightSum="6"
+                android:background="@drawable/bg_giaohang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_ship"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp">
+
+                </ImageView>
+                <TextView
+                    android:padding="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="Giao hàng Trong :  "
+                    android:textColor="@color/black"
+                    android:textSize="16sp">
+
+                </TextView>
+                <Button
+                    android:id="@+id/btnThayDoiGiaoHang"
+                    android:text="Thay Đổi"
+                    android:textSize="10sp"
+                    android:layout_gravity="center"
+                    android:layout_width="90dp"
+                    android:layout_height="50dp">
+
+                </Button>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:background="@color/grey_custom"
+            android:layout_width="match_parent"
+            android:layout_height="1dp">
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewSpTrongCH"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>

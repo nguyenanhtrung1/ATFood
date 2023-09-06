@@ -4,15 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activity.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerlayoutTrangChu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_alignParentTop="true"
+                android:id="@+id/toolbarTrangChu"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                app:title="@string/toolbar_TrangChu">
+                <FrameLayout
+                    android:layout_gravity="right"
+                    android:id="@+id/frame_GioHang"
+                    android:layout_width="60dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginRight="15dp">
+
+                    <com.nex3z.notificationbadge.NotificationBadge
+                        android:id="@+id/badge_SoLuongSP"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="top|right">
+
+                    </com.nex3z.notificationbadge.NotificationBadge>
+
+                    <ImageView
+                        android:id="@+id/cart"
+                        android:layout_width="33dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/cart">
+
+                    </ImageView>
+                </FrameLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+            <ViewFlipper
+                android:id="@+id/viewLipper"
+                android:layout_width="match_parent"
+                android:layout_height="160dp">
+
+            </ViewFlipper>
+
+            <EditText
+                android:id="@+id/edtSearch"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/bg_edittext"
+                android:drawableRight="@drawable/baseline_search"
+                android:drawablePadding="10dp"
+                android:hint="Bạn muốn ăn gì nào ?"
+                android:padding="5dp"
+                android:inputType="none"
+                android:textColorHint="@color/black">
+            </EditText>
+            <LinearLayout
+                android:layout_marginTop="7dp"
+                android:background="@color/grey_custom"
+                android:layout_width="match_parent"
+                android:layout_height="1dp">
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleViewTrangChu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:layout_gravity="start"
+            android:id="@+id/navigationViewTrangChu"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_food"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="Danh Sách Chức Năng"
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                android:textStyle="bold">
+            </TextView>
+            <ListView
+                android:layout_marginTop="50dp"
+                android:id="@+id/listviewTrangChu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+        </com.google.android.material.navigation.NavigationView>
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
