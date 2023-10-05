@@ -1,4 +1,4 @@
-package com.example.atfood.Activity;
+package com.example.atfood.ActivityUser;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,7 +10,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.atfood.Adapter.SanPhamAdapter;
@@ -28,7 +27,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class SearchActivity extends AppCompatActivity {
+public class TimKiemActivity extends AppCompatActivity {
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ATFoodAPI atFoodAPI;
     Toolbar toolbarSearch;

@@ -1,4 +1,4 @@
-package com.example.atfood.Activity;
+package com.example.atfood.ActivityUser;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -62,10 +62,9 @@ public class GioHangActivity extends AppCompatActivity {
         btnMuaHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(GioHangActivity.this, ThanhToanActivity.class);
+                Intent intent = new Intent(GioHangActivity.this, ThanhToanActivity.class);
                 intent.putExtra("tongtien",tongtiensp);
-                Utils.arrGioHang.clear();
-                startActivity(intent);*/
+                startActivity(intent);
             }
         });
 
@@ -104,8 +103,8 @@ public class GioHangActivity extends AppCompatActivity {
         EventBus.getDefault().unregister(this);
     }
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void eventTinhTien(TinhTongEven even){
-        if (even != null){
+    public void eventTinhTien(TinhTongEven event){
+        if (event != null){
             totalMoney();
         }
     }

@@ -1,4 +1,4 @@
-package com.example.atfood.Activity;
+package com.example.atfood.ActivityUser;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -75,10 +75,10 @@ public class OTPActivity extends AppCompatActivity {
     private void onClickOTPAgain() {
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(mPhoneNumber)       // Phone number to verify
-                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                        .setActivity(this)                 // (optional) Activity for callback binding
-                        // If no activity is passed, reCAPTCHA verification can not be used.
+                        .setPhoneNumber(mPhoneNumber)
+                        .setTimeout(60L, TimeUnit.SECONDS)
+                        .setActivity(this)
+
                         .setForceResendingToken(mForceResendingToken)
                         .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                             @Override
@@ -116,7 +116,10 @@ public class OTPActivity extends AppCompatActivity {
                             String taiKhoan = getIntent().getStringExtra("taiKhoan");
                             String matKhau = getIntent().getStringExtra("matKhau");
                             String tenNguoiDung = getIntent().getStringExtra("tenNguoiDung");
-                            compositeDisposable.add(atFoodAPI.dangKi(taiKhoan, matKhau, tenNguoiDung, mPhoneNumber)
+                            int vaiTro = getIntent().getIntExtra("vaiTro",0);
+                            FirebaseUser user = task.getResult().getUser();
+
+                            compositeDisposable.add(atFoodAPI.dangKi(taiKhoan, matKhau, tenNguoiDung, mPhoneNumber,vaiTro,user.getUid())
                                     .subscribeOn(Schedulers.io())
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(
@@ -124,7 +127,7 @@ public class OTPActivity extends AppCompatActivity {
                                                 if(userModel.isSuccess()){
                                                     Utils.user_current.setTaikhoan(taiKhoan);
                                                     Utils.user_current.setMatkhau(matKhau);
-
+                                                    goToMainActivity();
                                                     finish();
                                                 }else{
                                                     Toast.makeText(getApplicationContext(), "Success!!", Toast.LENGTH_SHORT).show();
@@ -135,7 +138,7 @@ public class OTPActivity extends AppCompatActivity {
                                             }
                                     )
                             );
-                            goToMainActivity();
+
 
                         } else {
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
@@ -147,7 +150,7 @@ public class OTPActivity extends AppCompatActivity {
                 });
     }
     private void goToMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), DangNhapActivity.class);
         //intent.putExtra("phone_number",phoneNumber);
         startActivity(intent);
     }

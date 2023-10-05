@@ -1,21 +1,31 @@
-package com.example.atfood.Activity;
+package com.example.atfood.ActivityUser;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.example.atfood.ActivityAdmin.QuanLiCuaHangActivity;
 import com.example.atfood.R;
 import com.example.atfood.Utils.Utils;
 import com.example.atfood.Retrofit.ATFoodAPI;
 import com.example.atfood.Retrofit.RetrofitClient;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -29,14 +39,32 @@ public class DangNhapActivity extends AppCompatActivity {
     ATFoodAPI atFoodAPI;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     boolean isLogin = false;
+    Spinner spinnerVaiTro;
+    int vaiTro;
+    FirebaseAuth mAuth;
+    FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dang_nhap);
+
         initView();
         initControl();
+        initSpinner();
     }
+
     private void initControl() {
+        spinnerVaiTro.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                vaiTro = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         txtDangKi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +83,8 @@ public class DangNhapActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Bạn Chưa Nhập Tài Khoản!!!", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(matKhau)) {
                     Toast.makeText(getApplicationContext(), "Bạn Chưa Nhập Mật Khẩu!!!", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+                else {
                     Paper.book().write("taikhoan",taiKhoan);
                     Paper.book().write("matkhau",matKhau);
                     dangNhap(taiKhoan, matKhau);
@@ -64,7 +93,13 @@ public class DangNhapActivity extends AppCompatActivity {
         });
 
     }
-
+    private void initSpinner() {
+        List<String> listVaiTro = new ArrayList<>();
+        listVaiTro.add("User ");
+        listVaiTro.add("Admin");
+        ArrayAdapter<String> spinerAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listVaiTro);
+        spinnerVaiTro.setAdapter(spinerAdapter);
+    }
     private void initView() {
         Paper.init(this);
         txtDangKi = findViewById(R.id.txtClick_DangKi);
@@ -72,6 +107,7 @@ public class DangNhapActivity extends AppCompatActivity {
         edtTaiKhoan = findViewById(R.id.edtTaiKhoanDN);
         btnDangNhap = findViewById(R.id.btnDangNhap);
         txtQuenMatKhau = findViewById(R.id.txtClick_QuenMatKhau);
+        spinnerVaiTro = findViewById(R.id.spinner_vaiTro);
         atFoodAPI = RetrofitClient.getInstance(Utils.BASE_URL).create(ATFoodAPI.class);
 
         //Read data
@@ -93,17 +129,28 @@ public class DangNhapActivity extends AppCompatActivity {
     }
 
     private void dangNhap(String taiKhoan, String matKhau) {
-        compositeDisposable.add(atFoodAPI.dangNhap(taiKhoan, matKhau)
+        compositeDisposable.add(atFoodAPI.dangNhap(taiKhoan, matKhau,vaiTro)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         userModel -> {
                             if (userModel.isSuccess()){
-                                isLogin = true;
-                                Paper.book().write("islogin",isLogin);
-                                Utils.user_current = userModel.getResult().get(0);
-                                Intent intent = new Intent(DangNhapActivity.this, MainActivity.class);
-                                startActivity(intent);
+                                if(vaiTro == 0){
+                                    isLogin = true;
+                                    Paper.book().write("islogin",isLogin);
+                                    Utils.user_current = userModel.getResult().get(0);
+                                    Paper.book().write("user",userModel.getResult().get(0));
+                                    Intent intent = new Intent(DangNhapActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                }
+                                else if(vaiTro == 1){
+                                    isLogin = true;
+                                    Paper.book().write("islogin",isLogin);
+                                    Utils.user_current = userModel.getResult().get(0);
+                                    Paper.book().write("user",userModel.getResult().get(0));
+                                    Intent intentQuanLi = new Intent(DangNhapActivity.this, QuanLiCuaHangActivity.class);
+                                    startActivity(intentQuanLi);
+                                }
                             }
                         },
                         throwable -> {
@@ -127,4 +174,5 @@ public class DangNhapActivity extends AppCompatActivity {
         compositeDisposable.clear();
         super.onDestroy();
     }
+
 }

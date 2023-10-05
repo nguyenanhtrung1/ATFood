@@ -1,11 +1,8 @@
 package com.example.atfood.Model;
 
-import java.util.List;
-
-public class CuaHangModel {
+public class KetQuaModel {
     boolean success;
     String message;
-    List<CuaHang> result;
 
     public boolean isSuccess() {
         return success;
@@ -21,13 +18,5 @@ public class CuaHangModel {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public List<CuaHang> getResult() {
-        return result;
-    }
-
-    public void setResult(List<CuaHang> result) {
-        this.result = result;
     }
 }

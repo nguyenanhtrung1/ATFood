@@ -63,4 +63,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.10.1'
     //Even Bus
     implementation("org.greenrobot:eventbus:3.3.1")
+    //Image Picker
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+    //CountryCodePicker
+    implementation 'com.hbb20:ccp:2.5.0'
 }

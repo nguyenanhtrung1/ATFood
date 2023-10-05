@@ -1,16 +1,18 @@
-package com.example.atfood.Activity;
+package com.example.atfood.ActivityUser;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-
 import com.example.atfood.R;
 import com.example.atfood.Retrofit.ATFoodAPI;
 import com.example.atfood.Retrofit.RetrofitClient;
@@ -25,12 +27,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.hbb20.CountryCodePicker;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class DangKiActivity extends AppCompatActivity {
     EditText edtTaiKhoan, edtMatKhau, edtReMatKhau, edtSoDienThoai,edtTenNguoiDung;
@@ -38,6 +41,9 @@ public class DangKiActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     ATFoodAPI atFoodAPI;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
+    Spinner spinnerVaiTro;
+    int vaiTro;
+    CountryCodePicker countryCodePicker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +53,16 @@ public class DangKiActivity extends AppCompatActivity {
     }
 
     private void initControl() {
+        spinnerVaiTro.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                vaiTro = position;
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         btnDangKi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,11 +71,16 @@ public class DangKiActivity extends AppCompatActivity {
         });
     }
     private void DangKi() {
+        String countryCode = countryCodePicker.getSelectedCountryCode();
         String taiKhoan = edtTaiKhoan.getText().toString().trim();
         String tenNguoiDung = edtTenNguoiDung.getText().toString().trim();
         String matKhau = edtMatKhau.getText().toString().trim();
         String reMatKhau = edtReMatKhau.getText().toString().trim();
         String sodienthoai ="+84" + edtSoDienThoai.getText().toString().trim();
+        String sodienthoai2 ="+"+countryCode + edtSoDienThoai.getText().toString().trim();
+        Log.d("CountryCodePicker", countryCode);
+        Log.d("sdt", sodienthoai);
+        Log.d("sdt2", sodienthoai2);
 
         if(TextUtils.isEmpty(taiKhoan)){
             Toast.makeText(getApplicationContext(), "Bạn Chưa Nhập Tài Khoản!!!", Toast.LENGTH_SHORT).show();
@@ -73,14 +94,13 @@ public class DangKiActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Bạn chưa điền số điện thoại!!!", Toast.LENGTH_SHORT).show();
         }else{
             if(matKhau.equals(reMatKhau)){
-                VerifyPhoneNumber(sodienthoai);
+                VerifyPhoneNumber(sodienthoai2);
             }else{
                 Toast.makeText(getApplicationContext(), "Mật khẩu điền lại chưa khớp!!!", Toast.LENGTH_SHORT).show();
             }
         }
     }
     private void VerifyPhoneNumber(String phoneNumber) {
-
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
                         .setPhoneNumber(phoneNumber)       // Phone number to verify
@@ -115,9 +135,7 @@ public class DangKiActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
                             FirebaseUser user = task.getResult().getUser();
-                            goToMainActivity(user.getPhoneNumber());
                         } else {
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 Toast.makeText(DangKiActivity.this, "The verification code entered was invalid", Toast.LENGTH_SHORT).show();
@@ -128,11 +146,6 @@ public class DangKiActivity extends AppCompatActivity {
                 });
     }
 
-    private void goToMainActivity(String phoneNumber) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("phone_number",phoneNumber);
-        startActivity(intent);
-    }
     private void goToOPTActivity(String phoneNumber, String verificationOTP) {
         String taiKhoan = edtTaiKhoan.getText().toString().trim();
         String tenNguoiDung = edtTenNguoiDung.getText().toString().trim();
@@ -144,6 +157,7 @@ public class DangKiActivity extends AppCompatActivity {
         intent.putExtra("taiKhoan",taiKhoan);
         intent.putExtra("matKhau",matKhau);
         intent.putExtra("tenNguoiDung",tenNguoiDung);
+        intent.putExtra("vaiTro",vaiTro);
         startActivity(intent);
 
     }
@@ -154,6 +168,16 @@ public class DangKiActivity extends AppCompatActivity {
         btnDangKi = findViewById(R.id.btnDangKi);
         edtSoDienThoai = findViewById(R.id.edtSoDienThoai);
         edtTenNguoiDung = findViewById(R.id.edtTenNguoiDung);
+        spinnerVaiTro = findViewById(R.id.spinner_vaiTro);
+        countryCodePicker = findViewById(R.id.countryCodePicker);
+        countryCodePicker.setCountryForNameCode("VN");
+
+        List<String> listVaiTro = new ArrayList<>();
+        listVaiTro.add("User ");
+        listVaiTro.add("Admin");
+        ArrayAdapter<String> spinerAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listVaiTro);
+        spinnerVaiTro.setAdapter(spinerAdapter);
+
         mAuth = FirebaseAuth.getInstance();
         atFoodAPI = RetrofitClient.getInstance(Utils.BASE_URL).create(ATFoodAPI.class);
     }

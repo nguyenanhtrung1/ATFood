@@ -4,10 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
+        android:background="#9A9898"
         android:layout_width="match_parent"
-        android:layout_height="10dp">
+        android:layout_height="1dp">
     </LinearLayout>
     <LinearLayout
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:background="@drawable/bg_loaisp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -20,11 +24,11 @@
             android:layout_height="60dp">
         </ImageView>
         <TextView
-            android:textColor="@android:color/holo_red_light"
+            android:textColor="@color/black"
             android:layout_gravity="center"
             android:id="@+id/txt_itemTenCN"
             android:text="a"
-            android:textSize="22sp"
+            android:textSize="17sp"
             android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

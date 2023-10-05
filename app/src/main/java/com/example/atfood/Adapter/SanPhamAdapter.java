@@ -2,24 +2,18 @@ package com.example.atfood.Adapter;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.atfood.Activity.ChiTietCuaHang;
-import com.example.atfood.Activity.CuaHangActivity;
 import com.example.atfood.EvenBus.SetBadgeEven;
-import com.example.atfood.EvenBus.TinhTongEven;
-import com.example.atfood.InterFace.ItemClickListener;
 import com.example.atfood.Model.GioHang;
 import com.example.atfood.Model.SanPham;
 import com.example.atfood.R;
@@ -27,7 +21,6 @@ import com.example.atfood.Utils.Utils;
 import com.nex3z.notificationbadge.NotificationBadge;
 
 import org.greenrobot.eventbus.EventBus;
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.util.List;

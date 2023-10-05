@@ -1,4 +1,4 @@
-package com.example.atfood.Activity;
+package com.example.atfood.ActivityUser;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.EditText;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -26,7 +26,7 @@ import com.example.atfood.Adapter.ChucNangAdapter;
 import com.example.atfood.Adapter.LoaiSpAdapter;
 import com.example.atfood.Model.ChucNang;
 import com.example.atfood.Model.LoaiSp;
-import com.example.atfood.Model.LoaiSpModel;
+import com.example.atfood.Model.User;
 import com.example.atfood.R;
 import com.example.atfood.Retrofit.ATFoodAPI;
 import com.example.atfood.Retrofit.RetrofitClient;
@@ -37,8 +37,8 @@ import com.nex3z.notificationbadge.NotificationBadge;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -52,11 +52,10 @@ public class MainActivity extends AppCompatActivity {
     ChucNangAdapter chucNangAdapter;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ATFoodAPI atFoodAPI;
-    EditText edtSearch;
     RecyclerView recycleViewTrangChu;
     List<LoaiSp> arrLoaiSp;
     LoaiSpAdapter loaiSpAdapter;
-    ImageView cart;
+    ImageView cart,imgSearch;
     NotificationBadge badgeSoLuongSp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +83,27 @@ public class MainActivity extends AppCompatActivity {
         else {
             Toast.makeText(this, "Không có kết nối interner!!! ", Toast.LENGTH_SHORT).show();
         }
+        listViewTrangChu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        Intent intentThongTinTk = new Intent(getApplicationContext(), ThongTinTaiKhoanActivity.class);
+                        startActivity(intentThongTinTk);
+                        break;
+                    case 1:
+                        Intent xemDonHang = new Intent(getApplicationContext(), XemDonHangActivity.class);
+                        startActivity(xemDonHang);
+                        break;
+                    case 2:
+                        Paper.book().delete("user");
+                        Intent dangXuat = new Intent(getApplicationContext(), DangNhapActivity.class);
+                        startActivity(dangXuat);
+                        break;
+
+                }
+            }
+        });
     }
 
     private void LoadLoaiSp() {
@@ -107,10 +127,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Searh() {
-        edtSearch.setOnClickListener(new View.OnClickListener() {
+        imgSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TimKiemActivity.class);
                 startActivity(intent);
 
             }
@@ -149,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationViewTrangChu);
         listViewTrangChu = findViewById(R.id.listviewTrangChu);
         viewFlipper = findViewById(R.id.viewLipper);
-        edtSearch = findViewById(R.id.edtSearch);
+        imgSearch = findViewById(R.id.img_Search);
         recycleViewTrangChu = findViewById(R.id.recycleViewTrangChu);
         badgeSoLuongSp = findViewById(R.id.badge_SoLuongSP);
         cart = findViewById(R.id.cart);
@@ -167,6 +187,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
             badgeSoLuongSp.setText(String.valueOf(totalItem));
+        }
+        Paper.init(this);
+        if(Paper.book().read("user")!= null){
+            User user = Paper.book().read("user");
+            Utils.user_current = user;
         }
     }
 

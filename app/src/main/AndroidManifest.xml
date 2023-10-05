@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -17,10 +18,35 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.GioHangActivity"
+            android:name=".ActivityAdmin.ThemSanPhamActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.ChiTietCuaHang"
+            android:name=".ActivityAdmin.QuanLiSanPhamActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityAdmin.ThemCuaHangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityAdmin.QuanLiCuaHangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityUser.ThongTinTaiKhoanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityUser.XemDonHangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityUser.ThanhToanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="false"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".ActivityUser.GioHangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityUser.ChiTietCuaHangActivity"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -41,26 +67,26 @@
             android:value="YOUR_API_KEY" />
 
         <activity
-            android:name=".Activity.MapActivity"
+            android:name=".ActivityUser.MapActivity"
             android:exported="false"
             android:label="@string/title_activity_map" />
         <activity
-            android:name=".Activity.CuaHangActivity"
+            android:name=".ActivityUser.CuaHangActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.SearchActivity"
+            android:name=".ActivityUser.TimKiemActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.OTPActivity"
+            android:name=".ActivityUser.OTPActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".ActivityUser.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.DangKiActivity"
+            android:name=".ActivityUser.DangKiActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.DangNhapActivity"
+            android:name=".ActivityUser.DangNhapActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

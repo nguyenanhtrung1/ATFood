@@ -2,10 +2,10 @@ package com.example.atfood.Model;
 
 import java.util.List;
 
-public class CuaHangModel {
+public class DonHangModel {
     boolean success;
     String message;
-    List<CuaHang> result;
+    List<DonHang> result;
 
     public boolean isSuccess() {
         return success;
@@ -23,11 +23,11 @@ public class CuaHangModel {
         this.message = message;
     }
 
-    public List<CuaHang> getResult() {
+    public List<DonHang> getResult() {
         return result;
     }
 
-    public void setResult(List<CuaHang> result) {
+    public void setResult(List<DonHang> result) {
         this.result = result;
     }
 }

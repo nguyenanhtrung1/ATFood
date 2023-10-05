@@ -5,58 +5,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg"
-    tools:context=".Activity.DangKiActivity">
-
+    tools:context=".ActivityUser.DangKiActivity">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:padding="5dp"
         android:text="@string/txtDangki"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:background="@color/maincolor"
         android:textColor="@color/white"
-        android:textSize="33sp"
-        android:textStyle="bold">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     </TextView>
-
     <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="5dp"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
         android:id="@+id/line1"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <com.google.android.material.textfield.TextInputEditText
-            android:textColor="@color/white"
             android:id="@+id/edtTaiKhoan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:hint="Nhập tài khoản"
+            android:drawablePadding="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/input_bg"
-            android:drawableLeft="@drawable/baseline_account_login"
-            android:drawablePadding="5dp"
-            android:hint="Nhập Tài Khoản"
-           >
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
         android:layout_marginTop="5dp"
         android:id="@+id/line5"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
-            android:textColor="@color/white"
-            android:background="@drawable/input_bg"
-            android:drawableLeft="@drawable/baseline_people_dangki"
             android:id="@+id/edtTenNguoiDung"
             android:hint="Nhập Tên Người Dùng"
             android:drawablePadding="5dp"
@@ -69,41 +55,33 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
         android:layout_marginTop="5dp"
         android:id="@+id/line2"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:endIconMode="password_toggle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:textColor="@color/white"
-            android:background="@drawable/input_bg"
-            android:inputType="textPassword"
             android:id="@+id/edtMatKhau"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:drawablePadding="5dp"
-            android:drawableLeft="@drawable/baseline_security_dangki"
-            android:hint="Nhập Mật Khẩu">
+            android:hint="Nhập Mật Khẩu"
+            android:inputType="textPassword">
 
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
         android:layout_marginTop="5dp"
         android:id="@+id/line3"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:endIconMode="password_toggle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
-            android:textColor="@color/white"
-            android:drawableLeft="@drawable/baseline_security_dangki"
-            android:background="@drawable/input_bg"
             android:inputType="textPassword"
             android:id="@+id/edtReMatKhau"
             android:hint="Nhập Lại Mật Khẩu"
@@ -114,42 +92,79 @@
             android:layout_height="wrap_content">
 
         </com.google.android.material.textfield.TextInputEditText>
-        <com.google.android.material.textfield.TextInputLayout
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:layout_marginTop="5dp"
-            app:prefixText="+84"
-            app:prefixTextColor="@color/white"
-            android:id="@+id/line4"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:weightSum="5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <com.hbb20.CountryCodePicker
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:id="@+id/countryCodePicker"
+                android:layout_weight="2"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtSoDienThoai"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/input_bg"
-                android:drawableLeft="@drawable/baseline_phone_dangki"
-                android:drawablePadding="5dp"
-                android:hint="Nhập Số Điện Thoại"
-                android:textColor="@color/white">
+            </com.hbb20.CountryCodePicker>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="5dp"
+                android:id="@+id/line4"
+                android:orientation="horizontal"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtSoDienThoai"
+                    android:hint="Nhập Số Điện Thoại"
+                    android:drawablePadding="5dp"
+                    android:layout_weight="3"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content">
 
-            </com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
     </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Chọn vai trò :"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
+        </TextView>
+        <Spinner
+            android:id="@+id/spinner_vaiTro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/spinner_vaitro">
+
+        </Spinner>
+    </LinearLayout>
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_margin="20dp"
-        android:text="Đăng Kí"
-        android:textSize="20sp"
-        android:textColor="@color/white"
+
         android:id="@+id/btnDangKi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#03A9F4">
+        android:layout_margin="10dp"
+        android:background="@color/maincolor"
+        android:text="Đăng Kí"
+        android:textColor="@color/white"
+        android:textSize="20sp">
+
     </androidx.appcompat.widget.AppCompatButton>
 
 </LinearLayout>

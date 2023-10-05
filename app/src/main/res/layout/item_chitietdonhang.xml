@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/test"
+            android:layout_margin="3dp"
+            android:padding="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:padding="5dp"
+                android:background="@drawable/bg_loaisp"
+                android:id="@+id/img_itemChiTietDH"
+                android:src="@drawable/icon_otp"
+                android:layout_width="60dp"
+                android:layout_height="60dp">
+
+            </ImageView>
+            <LinearLayout
+                android:layout_toEndOf="@+id/img_itemChiTietDH"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/txt_itemTenSPChiTietDH"
+                    android:text="Adidas"
+                    android:textSize="17sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+                <TextView
+                    android:id="@+id/txt_itemSoLuongSPChiTietDH"
+                    android:text="Số Lượng : 9"
+                    android:textSize="17sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+    <LinearLayout
+        android:background="#A3A2A2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+    </LinearLayout>
+</LinearLayout>

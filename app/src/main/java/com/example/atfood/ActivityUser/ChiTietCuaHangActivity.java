@@ -1,8 +1,7 @@
-package com.example.atfood.Activity;
+package com.example.atfood.ActivityUser;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,9 +16,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.atfood.Adapter.SanPhamAdapter;
 import com.example.atfood.EvenBus.SetBadgeEven;
-import com.example.atfood.EvenBus.TinhTongEven;
 import com.example.atfood.Model.CuaHang;
-import com.example.atfood.Model.GioHang;
 import com.example.atfood.Model.SanPham;
 import com.example.atfood.R;
 import com.example.atfood.Retrofit.ATFoodAPI;
@@ -38,7 +35,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class ChiTietCuaHang extends AppCompatActivity {
+public class ChiTietCuaHangActivity extends AppCompatActivity {
     Toolbar toolbarChiTietCH;
     CuaHang cuaHang;
     ImageView imgChiTietCH;
@@ -119,9 +116,9 @@ public class ChiTietCuaHang extends AppCompatActivity {
 
     private void initView() {
         toolbarChiTietCH = findViewById(R.id.toolbarChiTietCH);
-        txtTenCH = findViewById(R.id.txt_TenCH);
-        txtDiaChiCH = findViewById(R.id.txt_DiaChiCH);
-        imgChiTietCH = findViewById(R.id.img_CuaHang);
+        txtTenCH = findViewById(R.id.txtTenCH);
+        txtDiaChiCH = findViewById(R.id.txtDiaChiCH);
+        imgChiTietCH = findViewById(R.id.imgCuaHang);
         recyclerViewSanPham = findViewById(R.id.recycleViewSpTrongCH);
         arrSanPham = new ArrayList<>();
         atFoodAPI = RetrofitClient.getInstance(Utils.BASE_URL).create(ATFoodAPI.class);
@@ -139,7 +136,6 @@ public class ChiTietCuaHang extends AppCompatActivity {
     private void ActionBar() {
         setSupportActionBar(toolbarChiTietCH);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbarChiTietCH.setNavigationIcon(android.R.drawable.ic_media_rew);
 
         toolbarChiTietCH.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,14 +1,10 @@
 package com.example.atfood.Model;
 
-import java.io.Serializable;
-
-public class SanPham implements Serializable{
+public class ItemDonHang {
     int masanpham;
     String tensanpham;
-    String giasanpham;
+    int soluong;
     String hinhanh;
-    String mota;
-    int macuahang;
 
     public int getMasanpham() {
         return masanpham;
@@ -26,12 +22,12 @@ public class SanPham implements Serializable{
         this.tensanpham = tensanpham;
     }
 
-    public String getGiasanpham() {
-        return giasanpham;
+    public int getSoluong() {
+        return soluong;
     }
 
-    public void setGiasanpham(String giasanpham) {
-        this.giasanpham = giasanpham;
+    public void setSoluong(int soluong) {
+        this.soluong = soluong;
     }
 
     public String getHinhanh() {
@@ -40,21 +36,5 @@ public class SanPham implements Serializable{
 
     public void setHinhanh(String hinhanh) {
         this.hinhanh = hinhanh;
-    }
-
-    public String getMota() {
-        return mota;
-    }
-
-    public void setMota(String mota) {
-        this.mota = mota;
-    }
-
-    public int getMacuahang() {
-        return macuahang;
-    }
-
-    public void setMacuahang(int macuahang) {
-        this.macuahang = macuahang;
     }
 }

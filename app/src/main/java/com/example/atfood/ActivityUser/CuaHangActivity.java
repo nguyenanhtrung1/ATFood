@@ -1,8 +1,7 @@
-package com.example.atfood.Activity;
+package com.example.atfood.ActivityUser;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -60,6 +59,7 @@ public class CuaHangActivity extends AppCompatActivity {
                                 arrCuaHang = cuaHangModel.getResult();
                                 cuaHangAdapter = new CuaHangAdapter(getApplicationContext(), arrCuaHang);
                                 recyclerViewCuaHang.setAdapter(cuaHangAdapter);
+                                Utils.cuahang_current = cuaHangModel.getResult().get(0);
                             }
                         }
                         ,
@@ -72,7 +72,6 @@ public class CuaHangActivity extends AppCompatActivity {
     private void actionToolBar() {
         setSupportActionBar(toolbarCuaHang);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbarCuaHang.setNavigationIcon(android.R.drawable.ic_media_rew);
 
         toolbarCuaHang.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

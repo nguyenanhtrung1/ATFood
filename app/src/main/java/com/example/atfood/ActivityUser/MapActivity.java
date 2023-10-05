@@ -1,17 +1,17 @@
-package com.example.atfood.Activity;
+package com.example.atfood.ActivityUser;
 
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 
 import com.example.atfood.R;
+import com.example.atfood.databinding.ActivityMapBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.example.atfood.databinding.ActivityMapBinding;
 
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 

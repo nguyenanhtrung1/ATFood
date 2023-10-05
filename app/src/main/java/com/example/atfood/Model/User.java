@@ -6,6 +6,9 @@ public class User {
     String matkhau;
     String tennguoidung;
     String sodienthoai;
+    String vaitro;
+
+    String uid;
 
     public int getId() {
         return id;
@@ -45,5 +48,21 @@ public class User {
 
     public void setSodienthoai(String sodienthoai) {
         this.sodienthoai = sodienthoai;
+    }
+
+    public String getVaitro() {
+        return vaitro;
+    }
+
+    public void setVaitro(String vaitro) {
+        this.vaitro = vaitro;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

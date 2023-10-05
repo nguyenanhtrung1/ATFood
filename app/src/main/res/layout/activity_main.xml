@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.MainActivity">
+    tools:context=".ActivityUser.MainActivity">
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerlayoutTrangChu"
@@ -23,30 +23,45 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
                 app:title="@string/toolbar_TrangChu">
-                <FrameLayout
-                    android:layout_gravity="right"
-                    android:id="@+id/frame_GioHang"
-                    android:layout_width="60dp"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="?attr/actionBarSize"
-                    android:layout_marginRight="15dp">
-
-                    <com.nex3z.notificationbadge.NotificationBadge
-                        android:id="@+id/badge_SoLuongSP"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_gravity="top|right">
-
-                    </com.nex3z.notificationbadge.NotificationBadge>
+                    android:layout_gravity="right"
+                    android:layout_marginRight="5dp">
 
                     <ImageView
-                        android:id="@+id/cart"
-                        android:layout_width="33dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="15dp"
-                        android:src="@drawable/cart">
+                        android:id="@+id/img_Search"
+                        android:layout_width="38dp"
+                        android:layout_height="41dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/baseline_search">
 
                     </ImageView>
-                </FrameLayout>
+                    <FrameLayout
+                        android:layout_gravity="right"
+                        android:id="@+id/frame_GioHang"
+                        android:layout_width="60dp"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_marginRight="15dp">
+
+                        <com.nex3z.notificationbadge.NotificationBadge
+                            android:id="@+id/badge_SoLuongSP"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top|right">
+
+                        </com.nex3z.notificationbadge.NotificationBadge>
+
+                        <ImageView
+                            android:id="@+id/cart"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="15dp"
+                            android:src="@drawable/cart">
+
+                        </ImageView>
+                    </FrameLayout>
+                </LinearLayout>
 
             </androidx.appcompat.widget.Toolbar>
             <ViewFlipper
@@ -57,7 +72,6 @@
             </ViewFlipper>
 
             <EditText
-                android:id="@+id/edtSearch"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="30dp"
@@ -85,10 +99,17 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleViewTrangChu"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginRight="5dp">
 
                 </androidx.recyclerview.widget.RecyclerView>
+                <TextView
+                    android:layout_margin="5dp"
+                    android:textSize="18sp"
+                    android:text="Các món ăn được yêu thích nhất :"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
             </LinearLayout>
         </LinearLayout>
 
@@ -96,7 +117,6 @@
             android:layout_gravity="start"
             android:id="@+id/navigationViewTrangChu"
             android:layout_width="match_parent"
-            android:background="@drawable/bg_food"
             android:layout_height="match_parent">
             <TextView
                 android:layout_width="match_parent"
@@ -107,11 +127,12 @@
                 android:textSize="23sp"
                 android:textStyle="bold">
             </TextView>
+
             <ListView
-                android:layout_marginTop="50dp"
                 android:id="@+id/listviewTrangChu"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp">
 
             </ListView>
         </com.google.android.material.navigation.NavigationView>

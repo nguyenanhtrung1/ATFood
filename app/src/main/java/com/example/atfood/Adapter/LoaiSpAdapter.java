@@ -12,8 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.atfood.Activity.CuaHangActivity;
-import com.example.atfood.Activity.SearchActivity;
+import com.example.atfood.ActivityUser.CuaHangActivity;
 import com.example.atfood.InterFace.ItemClickListener;
 import com.example.atfood.Model.LoaiSp;
 import com.example.atfood.R;

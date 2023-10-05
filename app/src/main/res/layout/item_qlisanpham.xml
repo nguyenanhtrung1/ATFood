@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:layout_margin="5dp"
+    android:elevation="8dp"
+    app:cardCornerRadius="4dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="10">
+
+        <ImageView
+            android:padding="4dp"
+            android:background="@drawable/bg_loaisp"
+            android:id="@+id/img_itemSanPham"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:src="@drawable/icon_otp">
+        </ImageView>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7">
+            <TextView
+                android:gravity="center"
+                android:id="@+id/txt_itemTenSp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên cửa hàng"
+                android:textColor="@color/black"
+                android:textSize="17sp">
+            </TextView>
+            <TextView
+                android:id="@+id/txt_itemGiaSp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Giá : 300k"
+                android:textColor="#B80419"
+                android:textSize="16sp">
+            </TextView>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:weightSum="10"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/txt_itemMoTaSp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:text="Mô tả "
+                    android:textSize="16sp">
+                </TextView>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
