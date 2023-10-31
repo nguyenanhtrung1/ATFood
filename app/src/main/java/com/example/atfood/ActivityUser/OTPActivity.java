@@ -118,27 +118,27 @@ public class OTPActivity extends AppCompatActivity {
                             String tenNguoiDung = getIntent().getStringExtra("tenNguoiDung");
                             int vaiTro = getIntent().getIntExtra("vaiTro",0);
                             FirebaseUser user = task.getResult().getUser();
-
-                            compositeDisposable.add(atFoodAPI.dangKi(taiKhoan, matKhau, tenNguoiDung, mPhoneNumber,vaiTro,user.getUid())
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(
-                                            userModel -> {
-                                                if(userModel.isSuccess()){
-                                                    Utils.user_current.setTaikhoan(taiKhoan);
-                                                    Utils.user_current.setMatkhau(matKhau);
-                                                    goToMainActivity();
-                                                    finish();
-                                                }else{
-                                                    Toast.makeText(getApplicationContext(), "Success!!", Toast.LENGTH_SHORT).show();
+                            if(user != null){
+                                compositeDisposable.add(atFoodAPI.dangKi(taiKhoan, matKhau, tenNguoiDung, mPhoneNumber,vaiTro,user.getUid())
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribe(
+                                                userModel -> {
+                                                    if(userModel.isSuccess()){
+                                                        Utils.user_current.setTaikhoan(taiKhoan);
+                                                        Utils.user_current.setMatkhau(matKhau);
+                                                        goToMainActivity();
+                                                        finish();
+                                                    }else{
+                                                        Toast.makeText(getApplicationContext(), "Success!!", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                },
+                                                throwable -> {
+                                                    Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
                                                 }
-                                            },
-                                            throwable -> {
-                                                Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
-                                            }
-                                    )
-                            );
-
+                                        )
+                                );
+                            }
 
                         } else {
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {

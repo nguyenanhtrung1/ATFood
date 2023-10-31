@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityAdmin.ThongKeDonHangActivity">
+    <androidx.appcompat.widget.Toolbar
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/toolbarThongKeDonHang"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@color/white"
+        app:title="Thống Kê Đơn Hàng">
+
+    </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/line1"
+            android:layout_weight="3"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:inputType="number"
+                android:id="@+id/edtMaNguoiDung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:drawablePadding="5dp"
+                android:hint="Nhập mã user để tra cứu">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/txtTextDonHang"
+        android:layout_margin="4dp"
+        android:gravity="center"
+        android:text="Danh sách toàn bộ đơn hàng : "
+        android:textSize="17sp"
+        android:padding="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+    <TableLayout
+        android:layout_marginTop="5dp"
+        android:stretchColumns="1,2,3,4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <TextView
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:padding="7dp"
+                android:gravity="center"
+                android:layout_column="1"
+                android:text="Đơn hàng">
+            </TextView>
+            <TextView
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:padding="7dp"
+                android:gravity="center"
+                android:layout_column="2"
+                android:text="Số lượng">
+            </TextView>
+            <TextView
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:padding="7dp"
+                android:gravity="center"
+                android:layout_column="1"
+                android:text="tổng tiền">
+            </TextView>
+            <TextView
+                android:width="200dp"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:padding="7dp"
+                android:gravity="center"
+                android:layout_column="1"
+                android:text="địa chỉ">
+            </TextView>
+        </TableRow>
+    </TableLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewThongKeDh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

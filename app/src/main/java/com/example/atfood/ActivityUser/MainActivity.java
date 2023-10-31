@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -19,19 +22,25 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.atfood.Adapter.ChucNangAdapter;
 import com.example.atfood.Adapter.LoaiSpAdapter;
+import com.example.atfood.Adapter.SanPhamAdapter;
 import com.example.atfood.Model.ChucNang;
 import com.example.atfood.Model.LoaiSp;
+import com.example.atfood.Model.SanPham;
 import com.example.atfood.Model.User;
 import com.example.atfood.R;
 import com.example.atfood.Retrofit.ATFoodAPI;
 import com.example.atfood.Retrofit.RetrofitClient;
 import com.example.atfood.Utils.Utils;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
@@ -52,16 +61,20 @@ public class MainActivity extends AppCompatActivity {
     ChucNangAdapter chucNangAdapter;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ATFoodAPI atFoodAPI;
-    RecyclerView recycleViewTrangChu;
+    RecyclerView recycleViewTrangChu,recycleViewTopSp;
     List<LoaiSp> arrLoaiSp;
     LoaiSpAdapter loaiSpAdapter;
     ImageView cart,imgSearch;
     NotificationBadge badgeSoLuongSp;
+    SanPhamAdapter sanPhamAdapter;
+    List<SanPham> arrSanPham;
+    EditText edtAddress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        getToken();
         ActionBar();
         ActionViewFlipper();
         initControl();
@@ -71,7 +84,9 @@ public class MainActivity extends AppCompatActivity {
         if(isConnected(this)){
             LoadChucNang();
             LoadLoaiSp();
+            LoadSpBanChay();
             Searh();
+            getLocation();
             cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -96,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(xemDonHang);
                         break;
                     case 2:
+                        FirebaseAuth.getInstance().signOut();
                         Paper.book().delete("user");
                         Intent dangXuat = new Intent(getApplicationContext(), DangNhapActivity.class);
                         startActivity(dangXuat);
@@ -106,6 +122,53 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void getLocation() {
+        edtAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Intent intent = new Intent(getApplicationContext(), MapsFragment.class);
+                startActivity(intent);*/
+            }
+        });
+    }
+
+    private void LoadSpBanChay() {
+        compositeDisposable.add(atFoodAPI.getTopSp()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        sanPhamModel -> {
+                            arrSanPham = sanPhamModel.getResult();
+                            sanPhamAdapter = new SanPhamAdapter(getApplicationContext(),arrSanPham);
+                            recycleViewTopSp.setAdapter(sanPhamAdapter);
+                        }
+
+                ));
+    }
+
+    private void getToken(){
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnSuccessListener(new OnSuccessListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                Log.d("token", s);
+                Toast.makeText(getApplicationContext(), s+"", Toast.LENGTH_SHORT).show();
+                compositeDisposable.add(atFoodAPI.themToken(Utils.user_current.getId(),s)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                ketQuaModel -> {
+
+                                },
+                                throwable -> {
+                                    Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                        )
+                );
+            }
+        });
+    }
     private void LoadLoaiSp() {
         compositeDisposable.add(atFoodAPI.getLoaiSp()
                 .subscribeOn(Schedulers.io())
@@ -125,7 +188,6 @@ public class MainActivity extends AppCompatActivity {
                 )
         );
     }
-
     private void Searh() {
         imgSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +198,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void LoadChucNang() {
         compositeDisposable.add(atFoodAPI.getChucNang()
                 .subscribeOn(Schedulers.io())
@@ -164,19 +225,28 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
     private void initView() {
+        edtAddress = findViewById(R.id.edtAddress);
         drawerLayout = findViewById(R.id.drawerlayoutTrangChu);
         toolbar = findViewById(R.id.toolbarTrangChu);
         navigationView = findViewById(R.id.navigationViewTrangChu);
         listViewTrangChu = findViewById(R.id.listviewTrangChu);
         viewFlipper = findViewById(R.id.viewLipper);
         imgSearch = findViewById(R.id.img_Search);
+        //recycleLoaiSP
         recycleViewTrangChu = findViewById(R.id.recycleViewTrangChu);
         badgeSoLuongSp = findViewById(R.id.badge_SoLuongSP);
         cart = findViewById(R.id.cart);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 4);
         recycleViewTrangChu.setLayoutManager(layoutManager);
+        //recycleSP
+        recycleViewTopSp = findViewById(R.id.recycleViewTopSp);
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(this);
+        recycleViewTopSp.setHasFixedSize(true);
+        recycleViewTopSp.setLayoutManager(layoutManager1);
+
         arrLoaiSp = new ArrayList<>();
         arrChucNang = new ArrayList<>();
+        arrSanPham = new ArrayList<>();
         atFoodAPI = RetrofitClient.getInstance(Utils.BASE_URL).create(ATFoodAPI.class);
         if(Utils.arrGioHang == null){
             Utils.arrGioHang = new ArrayList<>();

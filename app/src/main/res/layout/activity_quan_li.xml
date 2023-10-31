@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityAdmin.QuanLiActivity">
+    <TextView
+        android:gravity="center"
+        android:text="Danh sách các chức năng quản lí : "
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:padding="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnQLiDanhMuc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="Quản lí Danh Mục ">
+
+        </Button>
+        <Button
+            android:id="@+id/btnQliCuaHang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="Quản lí cửa hàng - sản phẩm ">
+
+        </Button>
+        <Button
+            android:id="@+id/btnQLiUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="Quản lí User ">
+
+        </Button>
+
+
+    </LinearLayout>
+    <TextView
+        android:gravity="center"
+        android:text="Danh sách các chức năng Thống kê : "
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:padding="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnThongKeSP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="Thống kê sản phẩm ">
+
+        </Button>
+
+        <Button
+            android:id="@+id/btnThongKeDH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="Thống kê đơn hàng ">
+
+        </Button>
+        <Button
+            android:id="@+id/btnThongKeDT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="Thống kê doanh thu ">
+
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

@@ -11,107 +11,120 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+       <ScrollView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical">
 
-            <androidx.appcompat.widget.Toolbar
-                android:layout_alignParentTop="true"
-                android:id="@+id/toolbarTrangChu"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
-                app:title="@string/toolbar_TrangChu">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="5dp">
+               <androidx.appcompat.widget.Toolbar
+                   android:layout_alignParentTop="true"
+                   android:id="@+id/toolbarTrangChu"
+                   android:layout_width="match_parent"
+                   android:layout_height="?attr/actionBarSize"
+                   android:background="@color/white"
+                   app:title="@string/toolbar_TrangChu">
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="?attr/actionBarSize"
+                       android:layout_gravity="right"
+                       android:layout_marginRight="5dp">
 
-                    <ImageView
-                        android:id="@+id/img_Search"
-                        android:layout_width="38dp"
-                        android:layout_height="41dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/baseline_search">
+                       <ImageView
+                           android:id="@+id/img_Search"
+                           android:layout_width="38dp"
+                           android:layout_height="41dp"
+                           android:layout_margin="10dp"
+                           android:src="@drawable/baseline_search">
 
-                    </ImageView>
-                    <FrameLayout
-                        android:layout_gravity="right"
-                        android:id="@+id/frame_GioHang"
-                        android:layout_width="60dp"
-                        android:layout_height="?attr/actionBarSize"
-                        android:layout_marginRight="15dp">
+                       </ImageView>
+                       <FrameLayout
+                           android:layout_gravity="right"
+                           android:id="@+id/frame_GioHang"
+                           android:layout_width="60dp"
+                           android:layout_height="?attr/actionBarSize"
+                           android:layout_marginRight="15dp">
 
-                        <com.nex3z.notificationbadge.NotificationBadge
-                            android:id="@+id/badge_SoLuongSP"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="top|right">
+                           <com.nex3z.notificationbadge.NotificationBadge
+                               android:id="@+id/badge_SoLuongSP"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_gravity="top|right">
 
-                        </com.nex3z.notificationbadge.NotificationBadge>
+                           </com.nex3z.notificationbadge.NotificationBadge>
 
-                        <ImageView
-                            android:id="@+id/cart"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_marginTop="15dp"
-                            android:src="@drawable/cart">
+                           <ImageView
+                               android:id="@+id/cart"
+                               android:layout_width="40dp"
+                               android:layout_height="40dp"
+                               android:layout_marginTop="15dp"
+                               android:src="@drawable/cart">
 
-                        </ImageView>
-                    </FrameLayout>
-                </LinearLayout>
+                           </ImageView>
+                       </FrameLayout>
+                   </LinearLayout>
 
-            </androidx.appcompat.widget.Toolbar>
-            <ViewFlipper
-                android:id="@+id/viewLipper"
-                android:layout_width="match_parent"
-                android:layout_height="160dp">
+               </androidx.appcompat.widget.Toolbar>
+               <ViewFlipper
+                   android:id="@+id/viewLipper"
+                   android:layout_width="match_parent"
+                   android:layout_height="160dp">
 
-            </ViewFlipper>
+               </ViewFlipper>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/bg_edittext"
-                android:drawableRight="@drawable/baseline_search"
-                android:drawablePadding="10dp"
-                android:hint="Bạn muốn ăn gì nào ?"
-                android:padding="5dp"
-                android:inputType="none"
-                android:textColorHint="@color/black">
-            </EditText>
-            <LinearLayout
-                android:layout_marginTop="7dp"
-                android:background="@color/grey_custom"
-                android:layout_width="match_parent"
-                android:layout_height="1dp">
+               <EditText
+                   android:id="@+id/edtAddress"
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                   android:layout_marginStart="30dp"
+                   android:layout_marginEnd="30dp"
+                   android:background="@drawable/bg_edittext"
+                   android:drawableRight="@drawable/baseline_location_on_24"
+                   android:drawablePadding="10dp"
+                   android:hint="Hãy chọn vị trí của bạn ?"
+                   android:padding="5dp"
+                   android:inputType="none"
+                   android:textColorHint="@color/black">
+               </EditText>
+               <LinearLayout
+                   android:layout_marginTop="7dp"
+                   android:background="@color/grey_custom"
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp">
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycleViewTrangChu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp">
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:id="@+id/recycleViewTrangChu"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginRight="5dp">
 
-                </androidx.recyclerview.widget.RecyclerView>
-                <TextView
-                    android:layout_margin="5dp"
-                    android:textSize="18sp"
-                    android:text="Các món ăn được yêu thích nhất :"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                </TextView>
-            </LinearLayout>
-        </LinearLayout>
+                   </androidx.recyclerview.widget.RecyclerView>
+
+                   <TextView
+                       android:layout_margin="5dp"
+                       android:textSize="18sp"
+                       android:text="Các món ăn bán chạy nhất :"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content">
+                   </TextView>
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:id="@+id/recycleViewTopSp"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginRight="5dp">
+
+                   </androidx.recyclerview.widget.RecyclerView>
+               </LinearLayout>
+           </LinearLayout>
+       </ScrollView>
 
         <com.google.android.material.navigation.NavigationView
             android:layout_gravity="start"

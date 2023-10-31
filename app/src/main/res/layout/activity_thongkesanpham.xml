@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityAdmin.ThongKeSanPhamActivity">
+    <androidx.appcompat.widget.Toolbar
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/toolbarQliDonHang"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@color/white"
+        app:title="Thống Kê Sản Phẩm">
+
+    </androidx.appcompat.widget.Toolbar>
+    <TableLayout
+        android:stretchColumns="1,2,3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <TextView
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:padding="7dp"
+                android:gravity="center"
+                android:layout_column="1"
+                android:text="Mã sản phẩm">
+            </TextView>
+            <TextView
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:padding="7dp"
+                android:gravity="center"
+                android:layout_column="2"
+                android:text="Tên sản phẩm">
+            </TextView>
+            <TextView
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:padding="7dp"
+                android:gravity="center"
+                android:layout_column="1"
+                android:text="Số lượng bán">
+            </TextView>
+        </TableRow>
+    </TableLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewThongKeSp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

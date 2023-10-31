@@ -12,14 +12,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.example.atfood.ActivityAdmin.QuanLiActivity;
 import com.example.atfood.ActivityAdmin.QuanLiCuaHangActivity;
 import com.example.atfood.R;
 import com.example.atfood.Utils.Utils;
 import com.example.atfood.Retrofit.ATFoodAPI;
 import com.example.atfood.Retrofit.RetrofitClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -88,6 +93,11 @@ public class DangNhapActivity extends AppCompatActivity {
                     Paper.book().write("taikhoan",taiKhoan);
                     Paper.book().write("matkhau",matKhau);
                     dangNhap(taiKhoan, matKhau);
+                    /*if(user != null){
+
+                    }*/
+
+
                 }
             }
         });
@@ -109,7 +119,8 @@ public class DangNhapActivity extends AppCompatActivity {
         txtQuenMatKhau = findViewById(R.id.txtClick_QuenMatKhau);
         spinnerVaiTro = findViewById(R.id.spinner_vaiTro);
         atFoodAPI = RetrofitClient.getInstance(Utils.BASE_URL).create(ATFoodAPI.class);
-
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
         //Read data
         if(Paper.book().read("taikhoan") != null && Paper.book().read("matkhau") != null){
             edtTaiKhoan.setText(Paper.book().read("taikhoan"));
@@ -120,7 +131,7 @@ public class DangNhapActivity extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            dangNhap(Paper.book().read("taikhoan"),Paper.book().read("matkhau"));
+                            //dangNhap(Paper.book().read("taikhoan"),Paper.book().read("matkhau"));
                         }
                     },100);
                 }
@@ -148,7 +159,7 @@ public class DangNhapActivity extends AppCompatActivity {
                                     Paper.book().write("islogin",isLogin);
                                     Utils.user_current = userModel.getResult().get(0);
                                     Paper.book().write("user",userModel.getResult().get(0));
-                                    Intent intentQuanLi = new Intent(DangNhapActivity.this, QuanLiCuaHangActivity.class);
+                                    Intent intentQuanLi = new Intent(DangNhapActivity.this, QuanLiActivity.class);
                                     startActivity(intentQuanLi);
                                 }
                             }

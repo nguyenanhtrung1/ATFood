@@ -2,7 +2,6 @@ package com.example.atfood.Retrofit;
 
 import io.reactivex.rxjava3.core.Observable;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -11,14 +10,15 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 
-import com.example.atfood.Model.ChucNang;
 import com.example.atfood.Model.ChucNangModel;
 import com.example.atfood.Model.CuaHangModel;
 import com.example.atfood.Model.DonHangModel;
 import com.example.atfood.Model.KetQuaModel;
 import com.example.atfood.Model.LoaiSpModel;
-import com.example.atfood.Model.SanPham;
+import com.example.atfood.Model.ModelAdmin.ThongKeDoanhSoModel;
+import com.example.atfood.Model.ModelAdmin.ThongKeDonHangModel;
 import com.example.atfood.Model.SanPhamModel;
+import com.example.atfood.Model.ModelAdmin.ThongKeSanPhamModel;
 import com.example.atfood.Model.UserModel;
 
 public interface ATFoodAPI {
@@ -47,7 +47,8 @@ public interface ATFoodAPI {
     @GET("getqlicuahang.php")
     Observable<CuaHangModel> getQliCuaHang();
 
-
+    @GET("getsanphambanchay.php")
+    Observable<SanPhamModel> getTopSp();
     @POST("getcuahang.php")
     @FormUrlEncoded
     Observable<CuaHangModel> getCuaHang1(
@@ -144,7 +145,43 @@ public interface ATFoodAPI {
             @Field("macuahang") int macuahang,
             @Field("masanpham") int masanpham
     );
+    @POST("themdanhmuc.php")
+    @FormUrlEncoded
+    Observable<KetQuaModel> themDanhMuc(
+            @Field("tenloaisanpham") String tenloaisanpham,
+            @Field("hinhanh") String hinhanh
+    );
+    @POST("suadanhmuc.php")
+    @FormUrlEncoded
+    Observable<KetQuaModel> suaDanhMuc(
+            @Field("tenloaisanpham") String tenloaisanpham,
+            @Field("hinhanh") String hinhanh,
+            @Field("maloaisanpham") int maloaisanpham
+    );
+    @POST("xoadanhmuc.php")
+    @FormUrlEncoded
+    Observable<KetQuaModel> xoaDanhMuc(
+            @Field("maloaisanpham") int maloaisanpham
+    );
     @Multipart
     @POST("taianhlen.php")
     Call<KetQuaModel> uploadFile(@Part MultipartBody.Part file);
+
+    @POST("themtoken.php")
+    @FormUrlEncoded
+    Observable<KetQuaModel> themToken(
+            @Field("id") int id,
+            @Field("token") String token
+    );
+    @GET("thongkesp.php")
+    Observable<ThongKeSanPhamModel> thongKeSp();
+    @POST("thongkedh.php")
+    @FormUrlEncoded
+    Observable<ThongKeDonHangModel> thongKeDh(
+            @Field("search") String search
+    );
+    @GET("getdonhang.php")
+    Observable<ThongKeDonHangModel> getDonHang();
+    @GET("thongkedoanhsothang.php")
+    Observable<ThongKeDoanhSoModel> thongKeTheoThang();
 }
